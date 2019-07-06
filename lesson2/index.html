@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Lesson 2</title>
+  </head>
+  <body>
+    <script>
+      async function getData() {
+        const response = await fetch('ZonAnn.Ts+dSST.csv');
+        const data = await response.text();
+        const rows = data.split('\n').slice(1);
+
+        rows.forEach(el => {
+          const row = el.split(',');
+          const year = row[0];
+          const temp = row[1];
+          console.log(year, temp);
+        });
+      }
+
+      getData();
+    </script>
+  </body>
+</html>
