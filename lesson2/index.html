@@ -10,20 +10,23 @@
   <body>
     <canvas id="chart" width="400" height="400"></canvas>
     <script>
-      var ctx = document.getElementById('myChart').getContext('2d');
-      var chart = new Chart(ctx, {
+      const ctx = document.getElementById('chart').getContext('2d');
+      const xLabels = [];
+      const yTemps = [];
+      const chart = new Chart(ctx, {
         // The type of chart we want to create
         type: 'line',
 
         // The data for our dataset
         data: {
-          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+          labels: xLabels,
           datasets: [
             {
-              label: 'My First dataset',
+              label: 'Global Average Temperature',
               backgroundColor: 'rgb(255, 99, 132)',
               borderColor: 'rgb(255, 99, 132)',
-              data: [0, 10, 5, 2, 20, 30, 45],
+              data: yTemps,
+              fill: false,
             },
           ],
         },
@@ -40,7 +43,9 @@
         rows.forEach(el => {
           const row = el.split(',');
           const year = row[0];
+          xLabels.push(year);
           const temp = row[1];
+          yTemps.push(parseFloat(temp) + 14);
           console.log(year, temp);
         });
       }
